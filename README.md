@@ -1,2 +1,2 @@
 # Training
-Learning Technology
+Learn Technology
