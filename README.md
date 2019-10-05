@@ -1,2 +1,2 @@
 # Training
-Learn Technology
+Learn new Technology
