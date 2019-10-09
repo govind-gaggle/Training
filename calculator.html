@@ -49,20 +49,61 @@
 			document.getElementById("res").value=y;
 		}
 		function solve() {
-		
+			var str = document.getElementById("res").value;
+			var arr = str.split(" ");
+			
+			var numarr = [];
+			var oparr = [];
+			var result;
+			var i=0;
+			var n=0;
+			var len = arr.length;
+			for(i=0; i<len; i++){
+				if(i%2==0){
+
+					numarr[n]=arr[i];
+					n++;
+			console.log(numarr[n]);
+				}else{
+					oparr[n]=arr[i];
+					n++;
+				}
+	
+			}
+			document.getElementById("res").value=arr;
+			
+		}
+				/*var i=0;
+				var ch;
+				var current='';
+				var op;
+				var result;
 				var str =document.getElementById("res").value;
-				var op = str.indexOf('*');
-				var n1 = str.slice(0,op);
-				var op1 = str.slice(op,op+1);
-				var n2 = str.slice(op+1,5);
-		
-				document.getElementById("res").value=n1*n2;
+				var arr = str.split("+");
+				var num1 = parseFloat(str);
+				ops = str.indexOf('+');
+				op= str[ops];
+
+				var num2 = parseFloat(str.charAt(ops+1));
+				if(op=='+'){
+					result = parseFloat(num1)+parseFloat(num2);
+				}else if(op=='-'){
+					result = parseFloat(num1)-parseFloat(num2);
+				}else if(op=='*'){
+					result = parseFloat(num1)*parseFloat(num2);
+				}else if(op =='/'){
+					result = parseFloat(num1)/parseFloat(num2);
+				}
+				
+
+				document.getElementById('res').value=result;
+				result+=parseFloat(num2);
 		
 			}
 			function check(op) {
 					return op ==('-' || '+' || '*' ||'/')
 					}
-
+*/
 	</script>
 </head>
 <body>
@@ -75,18 +116,18 @@
 			<input class="btnNumber" type="button" value="7" onclick="display('7')">
 			<input id="8" class="btnNumber" type="button" value="8" onclick="display('8')">
 			<input id="9" class="btnNumber" type="button" value="9" onclick="display('9')">
-			<input id="/" type="button" value="/" onclick="display('/')">
+			<input id="/" type="button" value="/" onclick="display(' / ')">
 			<input id="4" class="btnNumber" type="button"  value="4" onclick="display('4')">
 			<input id="5" class="btnNumber" type="button" value="5" onclick="display('5')">
 			<input id="6" class="btnNumber" type="button" value="6" onclick="display('6')">
-			<input id="*" type="button" value="*" onclick="display('*')">
+			<input id="*" type="button" value="*" onclick="display(' * ')">
 			<input id="1" class="btnNumber" type="button" value="1" onclick="display('1')">
 			<input id="2" class="btnNumber" type="button" value="2" onclick="display('2')">
 			<input id="3" class="btnNumber" type="button" value="3" onclick="display('3')">
 			<input id="point" type="button" value="." onclick="display('.')">
 			<input id="0" class="btnNumber" type="button" value="0" onclick="display('0')">
-			<input id="-" type="button" value="-" onclick="display('-')">
-			<input id="+" type="button" value="+" onclick="display('+')">
+			<input id="-" type="button" value="-" onclick="display(' - ')">
+			<input id="+" type="button" value="+" onclick="display(' + ')">
 			<input id="=" type="button" value="=" onclick="solve()">
 		</div>
 	</div>
