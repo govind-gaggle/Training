@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Print Table</title>
+	<script>
+		window.onload=function() {
+			var i=j=20; 
+			var n=1;
+			for(n=1; n<=i; n++){
+				var content='<tr>';
+				var m=1;
+				for(m=1; m<=j; m++){
+					content+='<td>' +(n*m)+ '<td>';                                                       
+				}
+				content+='</tr>';
+				document.getElementById('test').innerHTML+=content;
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<div >
+		<table id="test" border= "1" style="background-color: green; color: white;" >
+			
+		</table>
+	</div>
+</body>
+</html>

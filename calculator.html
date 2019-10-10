@@ -28,7 +28,7 @@
 			
 		}
 		input[type='text']{
-			width: 258px;
+			width: 170px;
 			height: 50px;
 			background-color:  #b3b3ff;
 		}
@@ -38,72 +38,46 @@
 			document.getElementById('res').value+=val;
 		}
 
+		function backspace() {
+			var str = document.getElementById("res").value;
+			document.getElementById("res").value=str.substr(0, str.length-1);
+		}
+
 		function clr() {
 			document.getElementById("res").value="";
 		}
-
-		function solvepo(){
-			var  x = document.getElementById("res").value;
-
-			//var y = eval(x);
-			document.getElementById("res").value=y;
-		}
+		
 		function solve() {
 			var str = document.getElementById("res").value;
 			var arr = str.split(" ");
-			
-			var numarr = [];
-			var oparr = [];
 			var result;
 			var i=0;
-			var n=0;
-			var len = arr.length;
-			for(i=0; i<len; i++){
-				if(i%2==0){
-
-					numarr[n]=arr[i];
-					n++;
-			console.log(numarr[n]);
-				}else{
-					oparr[n]=arr[i];
-					n++;
+			while(arr.length>1){
+			for(i=0; i<arr.length;i++){
+				if(arr[i]=="*"){
+					
+					result=parseFloat(arr[i-1])*parseFloat(arr[i+1]);
+					arr.splice(i-1, 3, result);
 				}
-	
+				else if(arr[i]=="/"){
+					result=parseFloat(arr[i-1])/parseFloat(arr[i+1]);
+					arr.splice(i-1, 3, result);
+
+				}
+				else if(arr[i]=="+"){
+					result=parseFloat(arr[i-1])+parseFloat(arr[i+1]);
+					arr.splice(i-1, 3, result);
+				}
+				else if(arr[i]=="-"){
+					result=parseFloat(arr[i-1])-parseFloat(arr[i+1]);
+					arr.splice(i-1, 3, result);
+				}
 			}
-			document.getElementById("res").value=arr;
+			}
+			
+			document.getElementById("res").value=result;
 			
 		}
-				/*var i=0;
-				var ch;
-				var current='';
-				var op;
-				var result;
-				var str =document.getElementById("res").value;
-				var arr = str.split("+");
-				var num1 = parseFloat(str);
-				ops = str.indexOf('+');
-				op= str[ops];
-
-				var num2 = parseFloat(str.charAt(ops+1));
-				if(op=='+'){
-					result = parseFloat(num1)+parseFloat(num2);
-				}else if(op=='-'){
-					result = parseFloat(num1)-parseFloat(num2);
-				}else if(op=='*'){
-					result = parseFloat(num1)*parseFloat(num2);
-				}else if(op =='/'){
-					result = parseFloat(num1)/parseFloat(num2);
-				}
-				
-
-				document.getElementById('res').value=result;
-				result+=parseFloat(num2);
-		
-			}
-			function check(op) {
-					return op ==('-' || '+' || '*' ||'/')
-					}
-*/
 	</script>
 </head>
 <body>
@@ -111,21 +85,22 @@
 		<div class="btn">
 			<div class="result">
 				<input id="res" type="text" name="" value="">
+				<input type="button" id="back" value="<<" onclick="backspace()">
 				<input type="button" name="" value="C" onclick="clr('')">
 			</div>
-			<input class="btnNumber" type="button" value="7" onclick="display('7')">
-			<input id="8" class="btnNumber" type="button" value="8" onclick="display('8')">
-			<input id="9" class="btnNumber" type="button" value="9" onclick="display('9')">
+			<input type="button" value="7" onclick="display('7')">
+			<input type="button" value="8" onclick="display('8')">
+			<input type="button" value="9" onclick="display('9')">
 			<input id="/" type="button" value="/" onclick="display(' / ')">
-			<input id="4" class="btnNumber" type="button"  value="4" onclick="display('4')">
-			<input id="5" class="btnNumber" type="button" value="5" onclick="display('5')">
-			<input id="6" class="btnNumber" type="button" value="6" onclick="display('6')">
+			<input type="button"  value="4" onclick="display('4')">
+			<input type="button" value="5" onclick="display('5')">
+			<input type="button" value="6" onclick="display('6')">
 			<input id="*" type="button" value="*" onclick="display(' * ')">
-			<input id="1" class="btnNumber" type="button" value="1" onclick="display('1')">
-			<input id="2" class="btnNumber" type="button" value="2" onclick="display('2')">
-			<input id="3" class="btnNumber" type="button" value="3" onclick="display('3')">
+			<input type="button" value="1" onclick="display('1')">
+			<input type="button" value="2" onclick="display('2')">
+			<input type="button" value="3" onclick="display('3')">
 			<input id="point" type="button" value="." onclick="display('.')">
-			<input id="0" class="btnNumber" type="button" value="0" onclick="display('0')">
+			<input type="button" value="0" onclick="display('0')">
 			<input id="-" type="button" value="-" onclick="display(' - ')">
 			<input id="+" type="button" value="+" onclick="display(' + ')">
 			<input id="=" type="button" value="=" onclick="solve()">
