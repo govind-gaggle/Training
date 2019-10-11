@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Chess board
+	</title>
+	<style>
+
+	</style>
+	<script>
+		window.onload=function() {
+			var n=0; 
+			var id;
+			var i=6;
+			var j=4;
+			for(n=0; n<=7; n++){
+				var content='<tr>';
+				var m=0;
+				for(m=0; m<=7; m++){
+					if((n%2==0 && m%2!=0)|| (n%2!=0 && m%2==0)){
+						if(i==n && j==m){
+						content+='<td  style="width:50px; height:50px;"><img src="../queen.jpg" width="50px" height="50px"/><td>';
+					}else{
+						if((i==n || j==m || ((i+j)==(n+m)) || ((i-j)==(n-m))) && ((i<=7)&&(j<=7))) {
+							content+='<td  style="width:50px; height:50px; background-color:black; border:2px solid yellow;"><td>';
+						}
+						else{
+							content+='<td  style="width:50px; height:50px; background-color:black;"><td>';
+						}
+					}
+					} 
+					else{
+						if(i==n && j==m){
+						content+='<td  style="width:50px; height:50px; background-image:url("../queen.jpg");"><img src="../queen.jpg" width="50px" height="50px"/><td>';
+					}else{
+						if((i==n || j==m || ((i+j)==(n+m)) || ((i-j)==(n-m))) && ((i<=7)&&(j<=7))) {
+							content+='<td  style="width:50px; height:50px; background-color:white; border:2px solid yellow"><td>';
+						}
+						else{
+							content+='<td  style="width:50px; height:50px; background-color:white;"><td>';
+						}
+						
+					}
+					}                                                 
+				}
+				content+='</tr>';
+
+				document.getElementById('test').innerHTML+=content;
+			}
+			}
+	</script>
+</head>
+<body>
+<table id="test" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border:1px solid black; ">
+	
+</table>
+</body>
+</html>
