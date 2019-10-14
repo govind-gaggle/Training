@@ -1,59 +1,164 @@
-<script>
-		createChessboard();
+<!DOCTYPE html>
+<html>
+<head>
+	<title>chessboard test1</title>
+	<style>
+		.table{
+			float: left;
+
+		}
+		.image{
+			float: left;
+			width: 100px;
+			height: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="table">
+	<table border="1px solid black" cellpadding="0" cellspacing="0">
+		<tbody id="test" ></tbody>
+	</table>
+	Enter size: <input type="text" id="size"><br>
+  <input type="button" value="Create chessboard" onclick="createChessboard()"><br>
+	</div>
+	<select id="player">
+		<option value="elephant">elephant</option>
+		<option value="harse">harse</option>
+		<option value="queen">queen</option>
+	</select>
+	
+
+	<script>
+		//createChessboard();
 		function createChessboard() {
+
+			el = document.getElementById('player');
+			var player = el.options[el.selectedIndex].text
+			
 			document.getElementById('test').innerHTML="";
-			var size=11;
+			var size =document.getElementById("size").value;
 			var n=1; 
 			for(n; n<=size; n++){
 				var content='<tr>';
 				var m=1;
 				for(m; m<=size; m++){
-					var id = 'row-'+n+'-column-'+m;
+					var id = 'r_'+n+'_c_'+m;
 					if((n%2==0 && m%2!=0)|| (n%2!=0 && m%2==0)){
 
-							content+='<td id="'+id+'" onmouseover="harse('+id+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:black;">'+id+'</td>';
+							content+='<td id="'+id+'" onmouseover="'+player+'('+id+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:black;">'+id+'</td>';
 						}
 						else{
-							content+='<td id="'+id+'" onmouseover="harse('+id+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:white;">'+id+'</td>';
+							content+='<td id="'+id+'" onmouseover="'+player+'('+id+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:white;">'+id+'</td>';
 						}
 					}
 					
 
 				content+='</tr>';
-				console.log(content);
 
 				document.getElementById('test').innerHTML+=content;
-				//harse();
 			}
 		}
 		
 //function for harse 
-		function harse(coordinate) {
-			var add ;
-			add=parseInt(coordinate);
-			document.getElementById(add).innerHTML="<img src='../horse.gif' width='50px;' height='60px;'/>";
-			var arr=[21,19,8,12];
-			for(i=0; i<4; i++){
-				var minus = add-arr[i];
-				var addtion =add+arr[i];
-				if(document.getElementById(minus)!=null)
-				{
-					document.getElementById(minus).style.backgroundColor='red';
-				}
-				if(document.getElementById(addtion)!=null)
-				{
-					document.getElementById(addtion).style.backgroundColor='red';
-				}
-			}
+		function harse(coordinatess) {
 
+			coordinatess = coordinatess.id;
+			id = coordinatess.split("_");
+			var x=parseInt(id[1]);
+			var y =parseInt(id[3]);
+			
+			document.getElementById(coordinatess).innerHTML="<img src='../horse.jpeg' width='50px;' height='60px;'/>";
+				var p1= 'r_'+(x-1)+'_c_'+(y-2);
+				var p2= 'r_'+(x-1)+'_c_'+(y+2);
+				var p3= 'r_'+(x-2)+'_c_'+(y-1);
+				var p4= 'r_'+(x-2)+'_c_'+(y+1);
+				var p5= 'r_'+(x+1)+'_c_'+(y-2);
+				var p6= 'r_'+(x+1)+'_c_'+(y+2);
+				var p7= 'r_'+(x+2)+'_c_'+(y-1);
+				var p8= 'r_'+(x+2)+'_c_'+(y+1);
+				if(document.getElementById(p1)!=null)
+				{ 
+					document.getElementById(p1).style.backgroundColor='red';
+				}
+				if(document.getElementById(p2)!=null)
+				{ 
+					document.getElementById(p2).style.backgroundColor='red';
+				}
+				if(document.getElementById(p3)!=null)
+				{ 
+					document.getElementById(p3).style.backgroundColor='red';
+				}
+				if(document.getElementById(p4)!=null)
+				{ 
+					document.getElementById(p4).style.backgroundColor='red';
+				}
+				if(document.getElementById(p5)!=null)
+				{ 
+					document.getElementById(p5).style.backgroundColor='red';
+				}
+				if(document.getElementById(p6)!=null)
+				{ 
+					document.getElementById(p6).style.backgroundColor='red';
+				}
+				if(document.getElementById(p7)!=null)
+				{ 
+					document.getElementById(p7).style.backgroundColor='red';
+				}
+				if(document.getElementById(p8)!=null)
+				{ 
+					document.getElementById(p8).style.backgroundColor='red';
+				}
 		}
 
 	//function for queen
-	function harse(coordinate){
-		
-		for(k=0; K<=size; k++){
-			document.getElementById()
+	function elephant(coordinatess){
+		coordinatess = coordinatess.id;
+			id = coordinatess.split("_");
+			var x=parseInt(id[1]);
+			var y =parseInt(id[3]);
+		document.getElementById(coordinatess).innerHTML="<img src='../hathi.svg' width='50px'  height='50px'/>";
+			
+		for(i=1;i<=size; i++){
+			if((document.getElementById('r_'+x+'_c_'+i)!=null)) {
+				document.getElementById('r_'+x+'_c_'+i).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+i+'_c_'+y)!=null){
+				document.getElementById('r_'+i+'_c_'+y).style.backgroundColor="red";
+			}
+		}
+	}
+	
+	//function for queen
+	function queen(coordinatess){
+		coordinatess = coordinatess.id;
+			id = coordinatess.split("_");
+			var x=parseInt(id[1]);
+			var y =parseInt(id[3]);
+		document.getElementById(coordinatess).innerHTML="<img src='../queen.jpg' width='50px'  height='50px'/>";
+			
+		for(i=1;i<=size; i++){
+			if((document.getElementById('r_'+x+'_c_'+i)!=null)) {
+				document.getElementById('r_'+x+'_c_'+i).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+i+'_c_'+y)!=null){
+				document.getElementById('r_'+i+'_c_'+y).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+(x-i)+'_c_'+(y+i))!=null) {
+				document.getElementById('r_'+(x-i)+'_c_'+(y+i)).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+(x+i)+'_c_'+(y-i))!=null) {
+				document.getElementById('r_'+(x+i)+'_c_'+(y-i)).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+(x-i)+'_c_'+(y-i))!=null) {
+				document.getElementById('r_'+(x-i)+'_c_'+(y-i)).style.backgroundColor="red";
+			}
+			if(document.getElementById('r_'+(x+i)+'_c_'+(y+i))!=null) {
+				document.getElementById('r_'+(x+i)+'_c_'+(y+i)).style.backgroundColor="red";
+			}
 		}
 	}
 
 	</script>
+</body>
+</html>

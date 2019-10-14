@@ -24,10 +24,10 @@
 				var m=1;
 				for(m; m<=size; m++){
 					if((n%2==0 && m%2!=0)|| (n%2!=0 && m%2==0)){
-							content+='<td id='+n+m+' onmouseover="harse('+n+m+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:black;">'+n+m+'<td>';
+							content+='<td id='+n+m+' onmouseover="queen('+n+m+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:black;">'+n+m+'<td>';
 						}
 						else{
-							content+='<td id='+n+m+' onmouseover="harse('+n+m+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:white;">'+n+m+'<td>';
+							content+='<td id='+n+m+' onmouseover="queen('+n+m+')" onmouseout="createChessboard()" style="width:50px; height:50px; background-color:white;">'+n+m+'<td>';
 						}
 					}
 					
@@ -43,37 +43,75 @@
 		function harse(coordinate) {
 			var add ;
 			add=parseInt(coordinate);
-			document.getElementById(add).innerHTML="<img src='../horse.gif' width='50px;' height='60px;'>";
+			document.getElementById(add).innerHTML="<img src='../horse.gif' width='50px;' height='50px;'/>";
 			var arr=[21,19,8,12];
 			for(i=0; i<4; i++){
 				var minus = add-arr[i];
 				var addtion =add+arr[i];
 				if(document.getElementById(minus)!=null)
 				{
-					document.getElementById(minus).style.backgroundColor='red';
+					document.getElementById(minus).style.backgroundColor='gray';
 				}
 				if(document.getElementById(addtion)!=null)
 				{
-					document.getElementById(addtion).style.backgroundColor='red';
+					document.getElementById(addtion).style.backgroundColor='gray';
 				}
 			}
 
 		}
 
 	//function for queen
-	/*function queen(coordinate){
-		var index;
-		index=parseInt(coordinate);
-
+	function elephant(coordinate){
+		var position=[coordinate];
+		var str = position.toString();
+		var x= str[0];
+		var y=str[1];
+		document.getElementById(x+y).innerHTML="<img src='../hathi.svg' width='50px'  height='50px'/>";
+			
 		for(i=1;i<=8; i++){
-			for(j=1; j<=8;j++){
-				if(){
-
-				}
+			if((document.getElementById(x+i)!=null)) {
+				document.getElementById(x+i).style.backgroundColor="red";
+			}
+			if(document.getElementById(i+y)!=null){
+				document.getElementById(i+y).style.backgroundColor="red";
 			}
 		}
 	}
-*/
+// function for queen
+	function queen(coordinate){
+		var index ;
+			index=parseInt(coordinate);
+		var position=[coordinate];
+		var str = position.toString();
+		var x= str[0];
+		var y=str[1];
+		document.getElementById(x+y).innerHTML="<img src='../queen.jpg' width='50px'  height='50px'/>";
+			
+		for(i=1;i<=8; i++){
+			if((document.getElementById(x+i)!=null)) {
+				
+				document.getElementById(x+i).style.backgroundColor="gray";
+
+			}
+			if(document.getElementById(i+y)!=null){
+				document.getElementById(i+y).style.backgroundColor="gray";
+			}
+		}
+		var arr=[9,11,18,22,27,33,36,44,45,55,54,55,63,66];
+		for(i=0;i<16;i++){
+			var plus= index+arr[i];
+			var minus= index-arr[i];
+			console.log(plus);
+			if(document.getElementById(plus)!=null)
+				{
+					document.getElementById(plus).style.backgroundColor='gray';
+				}
+				if(document.getElementById(minus)!=null)
+				{
+					document.getElementById(minus).style.backgroundColor='gray';
+				}
+		}
+	}
 	</script>
 </body>
 </html>
