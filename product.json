@@ -1,0 +1,28 @@
+var product = [{	
+		"name":"Large Tshirt",
+		"id" : 1,
+		"image" : "url('../large_T-shurt.jpg')",
+		"color" : "red",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 2,
+		"image" : "url('../large_T-shurt.jpg')",
+		"color" : "white",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 3,
+		"image" : "url('../large_T-shurt.jpg')",
+		"color" : "black",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 4,
+		"image" : "url('../large_T-shurt.jpg')",
+		"color" : "white",
+		"qty" : 10
+	}];
