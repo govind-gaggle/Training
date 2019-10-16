@@ -33,79 +33,103 @@
 			<h2>Product Details:</h2>
 			<div id="cart"><img src="../cart.png" alt="cart" width="50px" height="50px">
 				<div id="result" style="float: left;"></div>
+				<div id="cartItem">cartItem</div>
 				<div id="remove"><input type="button" value="Remove" onclick="remove()" style="padding: 0; width: 80px; float: right;"></div>
 			</div>
 		</div>
-	<div id="item" class="grid-container"></div>
+	<div id="item" class="grid-container" style="float: left;"></div>
 	<script>
 	var product = [{	
 		"name":"Large Tshirt",
 		"id" : 1,
-		"image" : "url('../large_T-shurt.jpg')",
+		"image" : "large_T-shurt.jpg",
 		"color" : "red",
 		"qty" : 10
 	},
 	{	
 		"name":"Large Tshirt",
 		"id" : 2,
-		"image" : "url('../large_T-shurt.jpg')",
+		"image" : "large_T-shurt.jpg",
 		"color" : "white",
 		"qty" : 10
 	},
 	{	
 		"name":"Large Tshirt",
 		"id" : 3,
-		"image" : "url('../large_T-shurt.jpg')",
+		"image" : "large_T-shurt.jpg",
 		"color" : "black",
 		"qty" : 10
 	},
 	{	
 		"name":"Large Tshirt",
 		"id" : 4,
-		"image" : "url('../large_T-shurt.jpg')",
-		"color" : "white",
+		"image" : "large_T-shurt.jpg",
+		"color" : "yellow",
 		"qty" : 10
 	}];
 	var content='';
 
-	for(var i=0; i<product.length; i++){
+	for(var i=0; i<1; i++){
 		var pname = product[i].name;
-		var pid = product[i].id;
+		var pid =i;
 		var img = product[i].image;
 		var color = product[i].color;
 		var qty = product[i].qty;
 		var count =qty;
-
-		content += '<div style="width: 200px; height: 236px; border:2px solid orange; text-align: center;">\
+		content += '<div style="width: 200px; height: 240px; border:2px solid orange; text-align: center;">\
 		<div img>\
-			<img src="'+img+'" alt="large_T-shurt" width="100px;" height="150px;">\
+			<img src="../'+img+'" alt="large_T-shurt" width="100px;" height="150px;" style=>\
 		</div>\
 		<div>Name: '+pname+'</div>\
 		<div>color: '+color+'</div>\
 		<div>Qty: '+qty+'</div>\
-		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter()">\
+		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter('+pid+')">\
+		<input type="hidden" name="id" value="'+pid+'">\
 	</div><br/>';
-		
+
 }
-document.getElementById('item').innerHTML+=content;
-if(sessionStorage.clickcount){
+document.getElementById('item').innerHTML =content;
+
+
+/*if(sessionStorage.clickcount){
 	document.getElementById("result").innerHTML = sessionStorage.clickcount;
-}
+}*/
 
-function clickCounter() {
-	var count = qty;
-
-  if(typeof(Storage) !== "undefined") {
+function clickCounter(pid) {
     if (sessionStorage.clickcount) {
+    	
       sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+
     } else {
+    	//alert("else");
       sessionStorage.clickcount = 1;
     }
     document.getElementById("result").innerHTML = sessionStorage.clickcount;
-  }
+    content += '<div id="'+pid+'"><div style="width: 100px; height: 140px; border:2px solid orange; text-align: center;">\
+		<div img>\
+			<img src="../'+img+'" alt="large_T-shurt" width="50px;" height="70px;" style=>\
+		</div>\
+		<div>Name: '+product[pid].name+'</div>\
+		<div>color: '+product[pid].color+'</div>\
+		<div>Qty: '+product[pid].qty+'</div>\
+		<input style="width: 200px;" type="button" value="remove" onclick="remove('+pid+')">\
+		<input type="hidden" name="id" value="'+pid+'">\
+	</div>\
+	</div><br/>';
+     document.getElementById('cartItem').innerHTML =content;
+  		localStorage.setItem("id", "'+pid+'");
+		localStorage.setItem("name", '+product[pid].name+');
+		localStorage.setItem("image", '+img+');
+		localStorage.setItem("color", '+product[pid].color+');
+		localStorage.setItem("qty", '+product[pid].qty+');
+
+		document.getElementById("cartItem").innerHTML = localStorage.getItem("id");
+		console.log(id);
 }
 
-function remove() {
+function remove(pid) {
+
+	//document.getElementById("rm"+pid).remove();
 	var cartCount=document.getElementById('result').innerHTML;
 	if(typeof cartCount != "undefined" && cartCount > 0) {
     if (sessionStorage.clickcount) {
@@ -114,7 +138,20 @@ function remove() {
       sessionStorage.clickcount = 1;
     }
     document.getElementById("result").innerHTML = sessionStorage.clickcount;
-  }
+    var content;
+    content += '<div style="width: 200px; height: 240px; border:2px solid orange; text-align: center;">\
+		<div img>\
+			<img src="../'+img+'" alt="large_T-shurt" width="100px;" height="150px;" style=>\
+		</div>\
+		<div>Name: '+product[pid].name+'</div>\
+		<div>color: '+product[pid].color+'</div>\
+		<div>Qty: '+product[pid].qty+'</div>\
+		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter('+pid+')">\
+		<input type="hidden" name="id" value="'+pid+'">\
+	</div><br/>';
+	
+   document.getElementById('cartItem').innerHTML -=content;
+ } 
 }
 </script>
 	</div>

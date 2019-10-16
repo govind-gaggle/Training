@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<input type="text" id="add" required="">
+<input type="button" onclick="add()" value="add">
+<input type="button" onclick="removes()" value="remove">
+<input type="text" style="float: right;" id="storage">
+
+
+<div id="result"></div>
+
+<script>
+
+	function add() {
+		var product = [{	
+		"name":"Large Tshirt",
+		"id" : 1,
+		"image" : "large_T-shurt.jpg",
+		"color" : "red",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 2,
+		"image" : "large_T-shurt.jpg",
+		"color" : "white",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 3,
+		"image" : "large_T-shurt.jpg",
+		"color" : "black",
+		"qty" : 10
+	},
+	{	
+		"name":"Large Tshirt",
+		"id" : 4,
+		"image" : "large_T-shurt.jpg",
+		"color" : "yellow",
+		"qty" : 10
+	}];
+
+localStorage.setItem("product", JSON.stringify(product));
+product = JSON.parse(localStorage.getItem("product"));
+	}
+ 
+  function removes() {
+  	product = JSON.parse(localStorage.getItem("product"));
+
+var value = product[0].name;
+
+  	document.getElementById("storage").value = value;
+  }
+  
+</script>
+
+</body>
+</html>
