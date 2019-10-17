@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>product</title>
-</head>
 <body>
-	<div style="width: 200px; height: 252px; border:2px solid orange; text-align: center;">
-		<div img>
-			<img src="../large_T-shurt.jpg" alt="large_T-shurt" width="100px;" height="150px;" style="">
-		</div>
-		<div class="Name">Name: T-shirt</div>
-		<div class="Name">color: T-shirt</div>
-		<div class="Name">Qty: <input type="text" name="qty" style="width: 50px; height: 10px;"/></div>
-		<input style="width: 200px;" type="button" value="Add to cart"/>
-		<input type="hidden" name="id" value="01"/>
-	</div>
+
+<p>List all array items, with keys and values:</p>
+
+<p id="demo"></p>
+
+<script>
+var obj = {
+    'id_0' : {
+        'name' : 'input1',
+        'color' : 'input2'
+    },
+    'id_1' : {
+        'name' : 'input3',
+        'color' : 'input4'
+    },'id_3' : {
+        'name' : 'input1',
+        'color' : 'input2'
+    },
+};
+
+obj.id_3.name="test";
+console.log(obj);
+</script>
+
 </body>
 </html>

@@ -24,7 +24,6 @@
 			margin-top: -30px;
 			margin-right: 10px;
 		}
-	
 	</style>
 </head>
 <body>
@@ -33,43 +32,42 @@
 			<h2>Product Details:</h2>
 			<div id="cart"><img src="../cart.png" alt="cart" width="50px" height="50px">
 				<div id="result" style="float: left;"></div>
-				<div id="cartItem">cartItem</div>
-				<div id="remove"><input type="button" value="Remove" onclick="remove()" style="padding: 0; width: 80px; float: right;"></div>
+				<div id="cartItem"><b>cartItem</b></div>
+				
 			</div>
 		</div>
 	<div id="item" class="grid-container" style="float: left;"></div>
 	<script>
 	var product = [{	
 		"name":"Large Tshirt",
-		"id" : 1,
+		"id" : 0,
 		"image" : "large_T-shurt.jpg",
 		"color" : "red",
 		"qty" : 10
 	},
 	{	
-		"name":"Large Tshirt",
-		"id" : 2,
+		"name":"small Tshirt",
+		"id" : 1,
 		"image" : "large_T-shurt.jpg",
 		"color" : "white",
 		"qty" : 10
 	},
 	{	
 		"name":"Large Tshirt",
-		"id" : 3,
+		"id" : 2,
 		"image" : "large_T-shurt.jpg",
 		"color" : "black",
 		"qty" : 10
 	},
 	{	
 		"name":"Large Tshirt",
-		"id" : 4,
+		"id" : 3,
 		"image" : "large_T-shurt.jpg",
 		"color" : "yellow",
 		"qty" : 10
 	}];
 	var content='';
-
-	for(var i=0; i<1; i++){
+	for(var i=0; i<product.length; i++){
 		var pname = product[i].name;
 		var pid =i;
 		var img = product[i].image;
@@ -77,82 +75,124 @@
 		var qty = product[i].qty;
 		var count =qty;
 		content += '<div style="width: 200px; height: 240px; border:2px solid orange; text-align: center;">\
-		<div img>\
-			<img src="../'+img+'" alt="large_T-shurt" width="100px;" height="150px;" style=>\
+		<div>\
+			<img src="../'+img+'" alt="large_T-shurt" width="100px;" height="150px;"/>\
 		</div>\
 		<div>Name: '+pname+'</div>\
 		<div>color: '+color+'</div>\
 		<div>Qty: '+qty+'</div>\
-		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter('+pid+')">\
-		<input type="hidden" name="id" value="'+pid+'">\
+		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter('+pid+')"/>\
+		<input type="" name="id" value="'+pid+'"/>\
 	</div><br/>';
 
 }
+
 document.getElementById('item').innerHTML =content;
 
-
-/*if(sessionStorage.clickcount){
-	document.getElementById("result").innerHTML = sessionStorage.clickcount;
-}*/
-
+var content1=[];
+var local =[];
 function clickCounter(pid) {
-    if (sessionStorage.clickcount) {
-    	
-      sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
 
+    if (localStorage.clickcount) {
+    	
+      localStorage.clickcount = Number(localStorage.clickcount)+1;
+      
     } else {
     	//alert("else");
-      sessionStorage.clickcount = 1;
+      localStorage.clickcount = 1;
+
     }
-    document.getElementById("result").innerHTML = sessionStorage.clickcount;
-    content += '<div id="'+pid+'"><div style="width: 100px; height: 140px; border:2px solid orange; text-align: center;">\
-		<div img>\
-			<img src="../'+img+'" alt="large_T-shurt" width="50px;" height="70px;" style=>\
+    document.getElementById("result").innerHTML = localStorage.clickcount;
+   
+
+    /*localStorage.getItem("local");
+     	
+     	var pid = parseInt(local[pid].id);
+     
+     	var image = local[pid].image;
+     	var name =local[pid].name;
+    	var color = local[pid].color;
+    	var qty= local[pid].qty;
+    	document.getElementById("cartItem").innerHTML +='<img src="../'+image+'" alt="large_T-shurt" width="20px" height="25px"/>'
+     	document.getElementById("cartItem").innerHTML +='<div>Name:'+name+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<div>Color:'+color+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<div>Qty:'+qty+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<input type="button" value="remove" onclick="remove('+pid+')"/>'
+     	//console.log(pid);*/
+    
+    content1 = '<div id="'+pid+'"><div style="width: 100px; height: 140px; border:2px solid orange; text-align: center;">\
+		<div>\
+			<img src="../'+img+'" alt="large_T-shurt" width="50px;" height="70px;" />\
 		</div>\
 		<div>Name: '+product[pid].name+'</div>\
 		<div>color: '+product[pid].color+'</div>\
 		<div>Qty: '+product[pid].qty+'</div>\
-		<input style="width: 200px;" type="button" value="remove" onclick="remove('+pid+')">\
-		<input type="hidden" name="id" value="'+pid+'">\
+		<input style="width: 100px;" type="button" value="remove" onclick="remove('+pid+')"/>\
+		<input type="" name="id" value="'+pid+'"/>\
 	</div>\
 	</div><br/>';
-     document.getElementById('cartItem').innerHTML =content;
-  		localStorage.setItem("id", "'+pid+'");
-		localStorage.setItem("name", '+product[pid].name+');
-		localStorage.setItem("image", '+img+');
-		localStorage.setItem("color", '+product[pid].color+');
-		localStorage.setItem("qty", '+product[pid].qty+');
 
-		document.getElementById("cartItem").innerHTML = localStorage.getItem("id");
-		console.log(id);
-}
+     	//document.getElementById('cartItem').innerHTML +=content1;
+     	localStorage.setItem("local",content1);
+
+      
+     console.log(content1);
+  		
+	}
+		
 
 function remove(pid) {
 
-	//document.getElementById("rm"+pid).remove();
+	//console.log(pid);
 	var cartCount=document.getElementById('result').innerHTML;
 	if(typeof cartCount != "undefined" && cartCount > 0) {
-    if (sessionStorage.clickcount) {
-      sessionStorage.clickcount = Number(sessionStorage.clickcount)-1;
+    if (localStorage.clickcount) {
+      localStorage.clickcount = Number(localStorage.clickcount)-1;
     } else {
-      sessionStorage.clickcount = 1;
+      localStorage.clickcount = 1;
     }
-    document.getElementById("result").innerHTML = sessionStorage.clickcount;
-    var content;
-    content += '<div style="width: 200px; height: 240px; border:2px solid orange; text-align: center;">\
-		<div img>\
-			<img src="../'+img+'" alt="large_T-shurt" width="100px;" height="150px;" style=>\
+    document.getElementById("result").innerHTML = localStorage.clickcount;
+ } 
+ document.getElementById("cartItem").remove();
+ //console.log(pid);
+ localStorage.setItem("product",content1);
+
+}
+
+document.getElementById("result").innerHTML = localStorage.clickcount;
+/*var local = localStorage.getItem("product");
+     	//console.log(local);
+     	var image = local[pid].image;
+     	var name =local[pid].name;
+    	var color = local[pid].color;
+    	var qty= local[pid].qty;
+    	document.getElementById("cartItem").innerHTML +='<img src="../'+image+'" alt="large_T-shurt" width="20px" height="25px"/>'
+     	document.getElementById("cartItem").innerHTML +='<div style="font-size:12px;">Name:'+name+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<div style="font-size:12px;">Color:'+color+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<div style="font-size:12px;">Qty:'+qty+'</div>';
+     	document.getElementById("cartItem").innerHTML += '<input style="font-size:12px; padding:0;" type="button" value="remove" onclick="remove('+pid+')"/>';
+     	document.getElementById("cartItem").innerHTML += '<input type="" value="'+pid+'"/>'
+     	//console.log(pid);
+
+     	/*content1 = '<div id="'+pid+'"><div style="width: 100px; height: 140px; border:2px solid orange; text-align: center;">\
+		<div>\
+			<img src="../'+img+'" alt="large_T-shurt" width="50px;" height="70px;" />\
 		</div>\
 		<div>Name: '+product[pid].name+'</div>\
 		<div>color: '+product[pid].color+'</div>\
 		<div>Qty: '+product[pid].qty+'</div>\
-		<input style="width: 200px;" type="button" value="Add to cart" onclick="clickCounter('+pid+')">\
-		<input type="hidden" name="id" value="'+pid+'">\
+		<input style="width: 100px;" type="button" value="remove" onclick="remove('+pid+')"/>\
+		<input type="" name="id" value="'+pid+'"/>\
+	</div>\
 	</div><br/>';
-	
-   document.getElementById('cartItem').innerHTML -=content;
- } 
-}
+
+     	//document.getElementById('cartItem').innerHTML +=content1;
+     	localStorage.setItem("product",content1);*/
+     	var localvar = localStorage.getItem("local")
+  		//console.log(localvar);
+
+      document.getElementById("cartItem").innerHTML +=localvar;
+
 </script>
 	</div>
 </body>

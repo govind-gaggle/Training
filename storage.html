@@ -13,7 +13,6 @@
 
 <script>
 
-	function add() {
 		var product = [{	
 		"name":"Large Tshirt",
 		"id" : 1,
@@ -42,18 +41,12 @@
 		"color" : "yellow",
 		"qty" : 10
 	}];
-
-localStorage.setItem("product", JSON.stringify(product));
-product = JSON.parse(localStorage.getItem("product"));
+	
+	//console.log(product[0].id);
+	for(i in product){
+		product[i];
+		console.log(product[i]);
 	}
- 
-  function removes() {
-  	product = JSON.parse(localStorage.getItem("product"));
-
-var value = product[0].name;
-
-  	document.getElementById("storage").value = value;
-  }
   
 </script>
 
